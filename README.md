@@ -38,7 +38,7 @@ public $ruleSets = [
 ```
 helper(['form', 'reCaptcha']);
 
-echo form_open();
+echo form_open('/form_processing_path', array('id' => 'contactForm'))
 
 echo reCaptcha2('reCaptcha2', ['id' => 'recaptcha_v2'], ['theme' => 'dark']);
 
@@ -71,6 +71,8 @@ public $validationRules = [
 ];
 ```
 
-In the settings of the reCaptcha3 validator, the first parameter you specify is expectedAction, this parameter is not required.
+In the settings of the reCaptcha3 validator, the first parameter you specify is expectedAction. The form id attribute needs to share the same name as the action.
+This allows grecaptcha.execute to be called on form submission to prevent token
+expiration warnings.
 
 You can override a global scoreThreshold parameter in the second reCaptcha3 rule parameter.
