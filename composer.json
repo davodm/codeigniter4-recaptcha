@@ -1,5 +1,5 @@
 {
-    "name": "denis303/codeigniter4-recaptcha",
+    "name": "davodm/codeigniter4-recaptcha",
     "license": "MIT",
     "autoload": {
         "psr-4": {
