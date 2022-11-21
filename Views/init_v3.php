@@ -7,22 +7,18 @@
 <script {csp-script-nonce} type="text/javascript">
 
 grecaptcha.ready(function() {
-    grecaptcha.execute('<?= $key;?>', <?= json_encode($options);?>).then(function(token) {
-        document.getElementById('<?= $id;?>').value = token;
-        //document.getElementById('<?= $id;?>').oninput();
-    });
+    <?php if(!empty($options['action'])):?>
     var subCapStart = false;
     var subCapInMotion = false;
-    var subCapForm = document.getElementById('<?= $options['action'] ?>');
+    var subCapForm = document.getElementById('<?=$options['action'] ?>');
     subCapForm.addEventListener('submit', formCapSubmit);
     function formCapSubmit(event){
         if (!subCapStart){
             event.preventDefault();
             subCapStart = true;
-            grecaptcha.execute('<?= $key;?>', <?= json_encode($options);?>).then(function(token) {
-                document.getElementById('<?= $id;?>').value = token;
+            grecaptcha.execute('<?= $key;?>', <?=json_encode($options);?>).then(function(token) {
+                document.getElementById('<?=$id;?>').value = token;
                 setTimeout(function(){subCapForm.submit();}, 500);
-                // document.getElementById('<?= $id;?>').oninput();
             });
         } else if (subCapInMotion){
             // prevents double submission when activating grecaptcha
@@ -30,6 +26,12 @@ grecaptcha.ready(function() {
         }
         subCapInMotion = true;
     }
+    <?php else:?>
+    grecaptcha.execute('<?= $key;?>', <?= json_encode($options);?>).then(function(token) {
+        document.getElementById('<?=$id;?>').value = token;
+        //document.getElementById('<?=$id;?>').oninput();
+    });
+    <?php endif;?>
 });
 
 </script>
