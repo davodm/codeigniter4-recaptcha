@@ -3,7 +3,7 @@ Google reCAPTCHA CodeIgniter 4 Library
 
 ## Installation
 
-```composer require denis303/codeigniter4-recaptcha:dev-master```
+```composer require davodm/codeigniter4-recaptcha:dev-master```
 
 ## Configuration
 
@@ -38,7 +38,7 @@ public $ruleSets = [
 ```
 helper(['form', 'reCaptcha']);
 
-echo form_open('/form_processing_path', array('id' => 'contactForm'))
+echo form_open('/form_processing_path', array('id' => 'contactForm'));
 
 echo reCaptcha2('reCaptcha2', ['id' => 'recaptcha_v2'], ['theme' => 'dark']);
 
@@ -52,7 +52,7 @@ echo form_close();
 ```
 helper(['form', 'reCaptcha']);
 
-echo form_open();
+form_open('/form_processing_path', array('id' => 'contactForm'));
 
 echo reCaptcha3('reCaptcha3', ['id' => 'recaptcha_v3'], ['action' => 'contactForm']);
 
