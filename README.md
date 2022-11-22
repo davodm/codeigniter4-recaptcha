@@ -1,6 +1,9 @@
 Google reCAPTCHA CodeIgniter 4 Library
 ======================================
 
+This is a fork repo is based on [denis303/codeigniter4-recaptcha](https://github.com/denis303/codeigniter4-recaptcha) that had some pull requests which the owner/maintainer didn't accept it.
+So I had to use this repo instead.
+
 ## Installation
 
 ```composer require davodm/codeigniter4-recaptcha:dev-master```
@@ -71,8 +74,12 @@ public $validationRules = [
 ];
 ```
 
-In the settings of the reCaptcha3 validator, the first parameter you specify is expectedAction. The form id attribute needs to share the same name as the action.
-This allows grecaptcha.execute to be called on form submission to prevent token
-expiration warnings.
+In the settings of the reCaptcha3 validator, the first parameter you specify is expectedAction.
+
+So If you want to captcha doesn't expire, the form id attribute needs to share the same name as the action.
+This allows `grecaptcha.execute` to be called on form submission to prevent token  expiration warnings.
+Otherwise, it could be working without action name.
 
 You can override a global scoreThreshold parameter in the second reCaptcha3 rule parameter.
+
+Note that in your form you shouldn't have any `submit` field name such as button name.
